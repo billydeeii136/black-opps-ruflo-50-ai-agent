@@ -1,0 +1,17 @@
+{
+  "repo": "billydeeii136/black-opps-ruflo-50-ai-agent",
+  "release_api": "https://api.github.com/repos/billydeeii136/black-opps-ruflo-50-ai-agent/releases/latest",
+  "release_web": "https://github.com/billydeeii136/black-opps-ruflo-50-ai-agent/releases/latest",
+  "scripts": {
+    "web_markdown": "install-web.md",
+    "web_html": "install-web.html",
+    "unix_root": "install.sh",
+    "unix_auto": "install-unix.sh",
+    "mac": "install-mac.sh",
+    "linux": "install-linux.sh",
+    "lynx": "install-lynx.sh",
+    "windows_ps1": "install.ps1",
+    "windows_native_ps1": "install-windows.ps1",
+    "windows_cmd": "install.cmd"
+  }
+}
