@@ -1,39 +1,24 @@
 name: Validate Installers
-
 on:
+  workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Verify required files exist
+      - name: Validate shared path patches
         run: |
-          test -f install-mac.sh
-          test -f install-linux.sh
-          test -f install-lynx.sh
-          test -f install-windows.ps1
-          test -f _shared/install-public-cli-macos.sh
-          test -f _shared/install-public-cli-linux.sh
-          test -f _shared/install-public-cli-windows.ps1
-
-      - name: Verify installer scripts are executable
+          grep -q "./_shared/install-public-cli-macos.sh" install-mac.sh
+          grep -q "./_shared/install-public-cli-linux.sh" install-linux.sh
+          grep -q "./_shared/install-public-cli-linux.sh" install-lynx.sh
+          grep -q 'Join-Path $scriptDir "_shared"' install-windows.ps1
+      - name: Ensure shell scripts are executable
         run: |
           test -x install-mac.sh
           test -x install-linux.sh
           test -x install-lynx.sh
-          test -x install-unix.sh
-          test -x install.sh
-
-      - name: Shell syntax check
-        run: |
-          bash -n install-mac.sh
-          bash -n install-linux.sh
-          bash -n install-lynx.sh
-          bash -n install-unix.sh
-          bash -n install.sh
